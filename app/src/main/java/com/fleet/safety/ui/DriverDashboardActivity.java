@@ -10,6 +10,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 
 import com.fleet.safety.R;
 import com.fleet.safety.data.remote.OpenMeteoWeatherService;
@@ -43,6 +45,8 @@ public class DriverDashboardActivity extends AppCompatActivity {
 
     private OpenMeteoWeatherService weatherService;
     private SpeedRuleEngine speedRuleEngine;
+
+    private TextView badgeReason;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +84,47 @@ public class DriverDashboardActivity extends AppCompatActivity {
         switchOfflineWeather = findViewById(R.id.switchOfflineWeather);
 
         buttonRecalculate = findViewById(R.id.buttonRecalculate);
+
+        createSpeedBadge();
+    }
+
+    private void createSpeedBadge() {
+        ConstraintLayout rootLayout = (ConstraintLayout) findViewById(android.R.id.content).getRootView()
+                .findViewById(R.id.textMaxSpeed).getParent();
+
+        badgeReason = new TextView(this);
+        badgeReason.setId(View.generateViewId());
+        badgeReason.setText("");
+        badgeReason.setBackgroundResource(R.drawable.speed_badge);
+        badgeReason.setTextSize(12f);
+        badgeReason.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        badgeReason.setVisibility(View.GONE);
+
+        ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams(
+                ConstraintLayout.LayoutParams.WRAP_CONTENT,
+                ConstraintLayout.LayoutParams.WRAP_CONTENT
+        );
+
+        int marginSpace = getResources().getDimensionPixelSize(R.dimen.space_s);
+        layoutParams.topMargin = marginSpace;
+        layoutParams.leftMargin = marginSpace;
+        layoutParams.rightMargin = marginSpace;
+
+        badgeReason.setLayoutParams(layoutParams);
+
+        rootLayout.addView(badgeReason);
+
+        ConstraintSet constraintSet = new ConstraintSet();
+        constraintSet.clone(rootLayout);
+
+        constraintSet.connect(badgeReason.getId(), ConstraintSet.TOP,
+                R.id.textMaxSpeed, ConstraintSet.BOTTOM, marginSpace);
+        constraintSet.connect(badgeReason.getId(), ConstraintSet.START,
+                ConstraintSet.PARENT_ID, ConstraintSet.START);
+        constraintSet.connect(badgeReason.getId(), ConstraintSet.END,
+                ConstraintSet.PARENT_ID, ConstraintSet.END);
+
+        constraintSet.applyTo(rootLayout);
     }
 
     private void setupListeners() {
@@ -165,12 +210,15 @@ public class DriverDashboardActivity extends AppCompatActivity {
     }
 
     /**
-     * Updates the maximum speed display.
+     * Updates the maximum speed display and badge.
      *
-     * @param decision The speed decision containing the computed max speed
+     * @param decision The speed decision containing the computed max speed and reasoning
      */
     private void updateSpeedDisplay(SpeedDecision decision) {
         textMaxSpeed.setText(String.format("%d km/h", decision.getMaxSpeedKmh()));
+
+        badgeReason.setText(decision.getReason());
+        badgeReason.setVisibility(View.VISIBLE);
     }
 
     /**
