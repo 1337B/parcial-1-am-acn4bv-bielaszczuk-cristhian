@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/app/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/space_m"
+        tools:context=".ui.AdminSettingsActivity">
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/textTitleAdmin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/admin_settings_title"
+            android:textAppearance="@style/TextAppearance.Fleet.Title"
+            android:layout_marginBottom="@dimen/space_l"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Global Parameters Card -->
+        <LinearLayout
+            android:id="@+id/layoutGlobalParameters"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/card_background"
+            android:padding="@dimen/space_m"
+            android:layout_marginTop="@dimen/space_l"
+            app:layout_constraintTop_toBottomOf="@id/textTitleAdmin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <!-- Section Title -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Global parameters"
+                android:textSize="@dimen/text_h2"
+                android:textStyle="bold"
+                android:layout_marginBottom="@dimen/space_m" />
+
+            <!-- Road Type Section -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/road_type"
+                android:textSize="@dimen/text_body"
+                android:textStyle="bold"
+                android:layout_marginBottom="@dimen/space_s" />
+
+            <RadioGroup
+                android:id="@+id/radioRoadTypeAdmin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="@dimen/space_m">
+
+                <RadioButton
+                    android:id="@+id/radioAsphaltAdmin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/asphalt"
+                    android:layout_marginEnd="@dimen/space_l"
+                    android:checked="true" />
+
+                <RadioButton
+                    android:id="@+id/radioGravelAdmin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/gravel" />
+
+            </RadioGroup>
+
+            <!-- Time of Day Section -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/time_of_day"
+                android:textSize="@dimen/text_body"
+                android:textStyle="bold"
+                android:layout_marginBottom="@dimen/space_s" />
+
+            <RadioGroup
+                android:id="@+id/radioTimeOfDayAdmin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="@dimen/space_m">
+
+                <RadioButton
+                    android:id="@+id/radioDayAdmin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/day"
+                    android:layout_marginEnd="@dimen/space_l"
+                    android:checked="true" />
+
+                <RadioButton
+                    android:id="@+id/radioNightAdmin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/night" />
+
+            </RadioGroup>
+
+            <!-- Speed Bounds Section -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Speed bounds"
+                android:textSize="@dimen/text_body"
+                android:textStyle="bold"
+                android:layout_marginBottom="@dimen/space_s" />
+
+            <EditText
+                android:id="@+id/editMinSpeed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Min speed (km/h)"
+                android:inputType="number"
+                android:layout_marginBottom="@dimen/space_s" />
+
+            <EditText
+                android:id="@+id/editMaxSpeed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Max speed (km/h)"
+                android:inputType="number" />
+
+        </LinearLayout>
+
+        <!-- Save Settings Button -->
+        <Button
+            android:id="@+id/buttonSaveSettings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save settings"
+            android:layout_marginTop="@dimen/space_xl"
+            app:layout_constraintTop_toBottomOf="@id/layoutGlobalParameters"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

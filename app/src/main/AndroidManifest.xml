@@ -28,6 +28,10 @@
             android:name=".ui.DriverDashboardActivity"
             android:exported="false" />
 
+        <activity
+            android:name=".ui.AdminSettingsActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>
