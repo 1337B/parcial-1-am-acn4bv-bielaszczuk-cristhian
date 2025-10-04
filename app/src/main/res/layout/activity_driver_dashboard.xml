@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/app/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/space_m"
+    tools:context=".ui.DriverDashboardActivity">
+
+    <!-- Header section -->
+    <LinearLayout
+        android:id="@+id/layoutHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="@dimen/space_l"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/textTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/driver_dashboard_title"
+            android:textAppearance="@style/TextAppearance.Fleet.Title"
+            android:layout_marginBottom="@dimen/space_xs" />
+
+        <TextView
+            android:id="@+id/textSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Live max speed"
+            android:textAppearance="@style/TextAppearance.Fleet.Subtitle" />
+
+    </LinearLayout>
+
+    <!-- Big number display -->
+    <TextView
+        android:id="@+id/textMaxSpeed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-- km/h"
+        android:textSize="@dimen/text_h1"
+        android:textStyle="bold"
+        android:textColor="@color/color_primary"
+        android:layout_marginTop="@dimen/space_l"
+        android:layout_marginBottom="@dimen/space_l"
+        app:layout_constraintTop_toBottomOf="@id/layoutHeader"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Parameters card -->
+    <LinearLayout
+        android:id="@+id/layoutParameters"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/card_background"
+        android:padding="@dimen/space_m"
+        android:layout_marginTop="@dimen/space_l"
+        app:layout_constraintTop_toBottomOf="@id/textMaxSpeed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Road Type Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/road_type"
+            android:textSize="@dimen/text_body"
+            android:textStyle="bold"
+            android:layout_marginBottom="@dimen/space_s" />
+
+        <RadioGroup
+            android:id="@+id/radioRoadType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="@dimen/space_m">
+
+            <RadioButton
+                android:id="@+id/radioAsphalt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/asphalt"
+                android:layout_marginEnd="@dimen/space_l"
+                android:checked="true" />
+
+            <RadioButton
+                android:id="@+id/radioGravel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/gravel" />
+
+        </RadioGroup>
+
+        <!-- Time of Day Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/time_of_day"
+            android:textSize="@dimen/text_body"
+            android:textStyle="bold"
+            android:layout_marginBottom="@dimen/space_s" />
+
+        <RadioGroup
+            android:id="@+id/radioTimeOfDay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radioDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/day"
+                android:layout_marginEnd="@dimen/space_l"
+                android:checked="true" />
+
+            <RadioButton
+                android:id="@+id/radioNight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/night" />
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <!-- Weather section -->
+    <LinearLayout
+        android:id="@+id/layoutWeather"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/space_l"
+        app:layout_constraintTop_toBottomOf="@id/layoutParameters"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/weather"
+            android:textSize="@dimen/text_body"
+            android:textStyle="bold"
+            android:layout_marginBottom="@dimen/space_s" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="@dimen/space_s">
+
+            <TextView
+                android:id="@+id/textTemperature"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="-- °C"
+                android:textSize="@dimen/text_body" />
+
+            <TextView
+                android:id="@+id/textPrecipitation"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="-- mm"
+                android:textSize="@dimen/text_body" />
+
+        </LinearLayout>
+
+        <Switch
+            android:id="@+id/switchOfflineWeather"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/offline_weather"
+            android:checked="false" />
+
+    </LinearLayout>
+
+    <!-- Recalculate button -->
+    <Button
+        android:id="@+id/buttonRecalculate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/recalculate"
+        android:layout_marginTop="@dimen/space_l"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
