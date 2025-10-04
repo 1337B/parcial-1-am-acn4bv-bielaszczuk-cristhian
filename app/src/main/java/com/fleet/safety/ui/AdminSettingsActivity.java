@@ -1,6 +1,9 @@
 package com.fleet.safety.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -37,6 +40,7 @@ public class AdminSettingsActivity extends AppCompatActivity {
         setTitle(R.string.admin_settings_title);
 
         initializeViews();
+        setupListeners();
     }
 
     private void initializeViews() {
@@ -54,6 +58,46 @@ public class AdminSettingsActivity extends AppCompatActivity {
         editMaxSpeed = binding.editMaxSpeed;
 
         buttonSaveSettings = binding.buttonSaveSettings;
+    }
+
+    private void setupListeners() {
+        buttonSaveSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveSettingsAndNavigateToDriver();
+            }
+        });
+    }
+
+    private void saveSettingsAndNavigateToDriver() {
+        String roadType = radioAsphaltAdmin.isChecked() ? "ASPHALT" : "GRAVEL";
+
+        String timeOfDay = radioDayAdmin.isChecked() ? "DAY" : "NIGHT";
+
+        Intent intent = new Intent(this, DriverDashboardActivity.class);
+
+        intent.putExtra("roadType", roadType);
+        intent.putExtra("timeOfDay", timeOfDay);
+
+        String minSpeedText = editMinSpeed.getText().toString().trim();
+        if (!TextUtils.isEmpty(minSpeedText)) {
+            try {
+                int minSpeed = Integer.parseInt(minSpeedText);
+                intent.putExtra("minAllowedSpeed", minSpeed);
+            } catch (NumberFormatException e) {
+            }
+        }
+
+        String maxSpeedText = editMaxSpeed.getText().toString().trim();
+        if (!TextUtils.isEmpty(maxSpeedText)) {
+            try {
+                int maxSpeed = Integer.parseInt(maxSpeedText);
+                intent.putExtra("maxAllowedSpeed", maxSpeed);
+            } catch (NumberFormatException e) {
+            }
+        }
+
+        startActivity(intent);
     }
 
     @Override

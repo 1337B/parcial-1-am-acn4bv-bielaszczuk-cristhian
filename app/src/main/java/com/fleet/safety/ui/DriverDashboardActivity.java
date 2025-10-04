@@ -1,5 +1,6 @@
 package com.fleet.safety.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -48,6 +49,9 @@ public class DriverDashboardActivity extends AppCompatActivity {
 
     private TextView badgeReason;
 
+    private Integer adminMinSpeed = null;
+    private Integer adminMaxSpeed = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +61,7 @@ public class DriverDashboardActivity extends AppCompatActivity {
 
         initializeComponents();
         initializeViews();
+        readIntentExtras();
         setupListeners();
     }
 
@@ -86,6 +91,37 @@ public class DriverDashboardActivity extends AppCompatActivity {
         buttonRecalculate = findViewById(R.id.buttonRecalculate);
 
         createSpeedBadge();
+    }
+
+    private void readIntentExtras() {
+        Intent intent = getIntent();
+        if (intent != null) {
+            String roadTypeExtra = intent.getStringExtra("roadType");
+            if (roadTypeExtra != null) {
+                if ("ASPHALT".equals(roadTypeExtra)) {
+                    radioAsphalt.setChecked(true);
+                } else if ("GRAVEL".equals(roadTypeExtra)) {
+                    radioGravel.setChecked(true);
+                }
+            }
+
+            String timeOfDayExtra = intent.getStringExtra("timeOfDay");
+            if (timeOfDayExtra != null) {
+                if ("DAY".equals(timeOfDayExtra)) {
+                    radioDay.setChecked(true);
+                } else if ("NIGHT".equals(timeOfDayExtra)) {
+                    radioNight.setChecked(true);
+                }
+            }
+
+            if (intent.hasExtra("minAllowedSpeed")) {
+                adminMinSpeed = intent.getIntExtra("minAllowedSpeed", 0);
+            }
+
+            if (intent.hasExtra("maxAllowedSpeed")) {
+                adminMaxSpeed = intent.getIntExtra("maxAllowedSpeed", 0);
+            }
+        }
     }
 
     private void createSpeedBadge() {
@@ -138,19 +174,28 @@ public class DriverDashboardActivity extends AppCompatActivity {
     }
 
     /**
-     * Reads the current UI state and builds a DriverSettings object.
+     * Reads the current UI state and builds a DriverSettings object including admin bounds.
      *
-     * @return DriverSettings based on current UI selections
+     * @return DriverSettings based on current UI selections and admin bounds
      */
     private DriverSettings readSettingsFromUi() {
         RoadType roadType = radioAsphalt.isChecked() ? RoadType.ASPHALT : RoadType.GRAVEL;
 
         TimeOfDay timeOfDay = radioDay.isChecked() ? TimeOfDay.DAY : TimeOfDay.NIGHT;
 
-        return DriverSettings.builder()
+        DriverSettings.Builder builder = DriverSettings.builder()
                 .withRoadType(roadType)
-                .withTimeOfDay(timeOfDay)
-                .build();
+                .withTimeOfDay(timeOfDay);
+
+        if (adminMinSpeed != null) {
+            builder.withMinAllowedSpeed(adminMinSpeed);
+        }
+
+        if (adminMaxSpeed != null) {
+            builder.withMaxAllowedSpeed(adminMaxSpeed);
+        }
+
+        return builder.build();
     }
 
     /**

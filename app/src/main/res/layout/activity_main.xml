@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/app/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="@dimen/space_m"
     tools:context=".ui.MainActivity">
 
     <TextView
@@ -11,11 +12,39 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Fleet Safety"
-        android:textSize="24sp"
+        android:textSize="@dimen/text_h1"
         android:textStyle="bold"
+        android:textColor="@color/color_primary"
+        android:layout_marginBottom="@dimen/space_xl"
+        app:layout_constraintBottom_toTopOf="@id/buttonGoDriver"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <Button
+        android:id="@+id/buttonGoDriver"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/driver_dashboard_title"
+        android:layout_marginBottom="@dimen/space_m"
+        android:layout_marginStart="@dimen/space_l"
+        android:layout_marginEnd="@dimen/space_l"
+        app:layout_constraintBottom_toTopOf="@id/buttonGoAdmin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textGreeting" />
+
+    <Button
+        android:id="@+id/buttonGoAdmin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/admin_settings_title"
+        android:layout_marginStart="@dimen/space_l"
+        android:layout_marginEnd="@dimen/space_l"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/buttonGoDriver" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
