@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="color_primary">#0A5FFF</color>
+    <color name="color_primary_variant">#0847BF</color>
+    <color name="color_secondary">#00B37E</color>
+    <color name="color_background">#F6F8FA</color>
+    <color name="color_surface">#FFFFFF</color>
+    <color name="color_on_primary">#FFFFFF</color>
+    <color name="color_on_surface">#0A0A0A</color>
+
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="purple_200">#FFBB86FC</color>
@@ -8,4 +16,3 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
 </resources>
-

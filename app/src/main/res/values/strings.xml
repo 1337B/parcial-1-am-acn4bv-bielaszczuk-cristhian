@@ -1,4 +1,20 @@
 <resources>
     <string name="app_name">Fleet Safety</string>
-</resources>
+    <string name="driver_dashboard_title">Driver Dashboard</string>
+    <string name="admin_settings_title">Admin Settings</string>
 
+    <string name="recalculate">Recalculate</string>
+
+    <string name="road_type">Road type</string>
+    <string name="asphalt">Asphalt</string>
+    <string name="gravel">Gravel</string>
+
+    <string name="time_of_day">Time of day</string>
+    <string name="day">Day</string>
+    <string name="night">Night</string>
+
+    <string name="weather">Weather</string>
+    <string name="offline_weather">Use offline weather</string>
+
+    <string name="max_speed_label">Max speed</string>
+</resources>
