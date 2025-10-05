@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:background="@color/color_background">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -19,6 +20,7 @@
             android:layout_height="wrap_content"
             android:text="@string/admin_settings_title"
             android:textAppearance="@style/TextAppearance.Fleet.Title"
+            android:textColor="@color/color_primary"
             android:layout_marginBottom="@dimen/space_l"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -44,6 +46,7 @@
                 android:text="Global parameters"
                 android:textSize="@dimen/text_h2"
                 android:textStyle="bold"
+                android:textColor="@color/color_on_surface"
                 android:layout_marginBottom="@dimen/space_m" />
 
             <!-- Road Type Section -->
@@ -53,6 +56,7 @@
                 android:text="@string/road_type"
                 android:textSize="@dimen/text_body"
                 android:textStyle="bold"
+                android:textColor="@color/color_on_surface"
                 android:layout_marginBottom="@dimen/space_s" />
 
             <RadioGroup
@@ -64,16 +68,17 @@
 
                 <RadioButton
                     android:id="@+id/radioAsphaltAdmin"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="@string/asphalt"
-                    android:layout_marginEnd="@dimen/space_l"
                     android:checked="true" />
 
                 <RadioButton
                     android:id="@+id/radioGravelAdmin"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="@string/gravel" />
 
             </RadioGroup>
@@ -85,6 +90,7 @@
                 android:text="@string/time_of_day"
                 android:textSize="@dimen/text_body"
                 android:textStyle="bold"
+                android:textColor="@color/color_on_surface"
                 android:layout_marginBottom="@dimen/space_s" />
 
             <RadioGroup
@@ -96,16 +102,17 @@
 
                 <RadioButton
                     android:id="@+id/radioDayAdmin"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="@string/day"
-                    android:layout_marginEnd="@dimen/space_l"
                     android:checked="true" />
 
                 <RadioButton
                     android:id="@+id/radioNightAdmin"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="@string/night" />
 
             </RadioGroup>
@@ -117,6 +124,7 @@
                 android:text="Speed bounds"
                 android:textSize="@dimen/text_body"
                 android:textStyle="bold"
+                android:textColor="@color/color_on_surface"
                 android:layout_marginBottom="@dimen/space_s" />
 
             <EditText
@@ -125,6 +133,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Min speed (km/h)"
                 android:inputType="number"
+                android:padding="@dimen/space_m"
                 android:layout_marginBottom="@dimen/space_s" />
 
             <EditText
@@ -132,7 +141,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Max speed (km/h)"
-                android:inputType="number" />
+                android:inputType="number"
+                android:padding="@dimen/space_m" />
 
         </LinearLayout>
 
@@ -140,9 +150,11 @@
         <Button
             android:id="@+id/buttonSaveSettings"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:text="Save settings"
+            android:textSize="18sp"
             android:layout_marginTop="@dimen/space_xl"
+            android:layout_marginBottom="@dimen/space_m"
             app:layout_constraintTop_toBottomOf="@id/layoutGlobalParameters"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

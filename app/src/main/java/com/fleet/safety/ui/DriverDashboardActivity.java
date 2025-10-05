@@ -2,6 +2,7 @@ package com.fleet.safety.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -26,6 +27,9 @@ import com.fleet.safety.domain.WeatherSnapshot;
 import com.fleet.safety.domain.WeatherType;
 
 public class DriverDashboardActivity extends AppCompatActivity {
+
+    private static final String TAG = "DriverDashboard";
+    private static final String KEY_MAX_SPEED = "max_speed_display";
 
     private TextView textTitle;
     private TextView textSubtitle;
@@ -62,7 +66,37 @@ public class DriverDashboardActivity extends AppCompatActivity {
         initializeComponents();
         initializeViews();
         readIntentExtras();
+
+        if (savedInstanceState != null) {
+            String savedMaxSpeed = savedInstanceState.getString(KEY_MAX_SPEED);
+            if (savedMaxSpeed != null) {
+                textMaxSpeed.setText(savedMaxSpeed);
+                Log.d(TAG, "Restored max speed display: " + savedMaxSpeed);
+            }
+        }
+
         setupListeners();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume - Activity resumed, ready for user interaction");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d(TAG, "onPause - Activity paused, user interaction suspended");
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        String currentMaxSpeed = textMaxSpeed.getText().toString();
+        outState.putString(KEY_MAX_SPEED, currentMaxSpeed);
+        Log.d(TAG, "Saved max speed display to state: " + currentMaxSpeed);
     }
 
     private void initializeComponents() {
