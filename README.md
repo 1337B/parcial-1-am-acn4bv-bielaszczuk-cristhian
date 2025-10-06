@@ -83,4 +83,4 @@ app/
 
 ## Mas info
 
-Ver **Wiki** para detalles de arquitectura, pantallas y flujo.
+Ver [**Wiki**](https://github.com/1337B/parcial-1-am-acn4bv-bielaszczuk-cristhian/wiki) para detalles de arquitectura, pantallas y flujo.
