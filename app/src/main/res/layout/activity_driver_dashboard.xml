@@ -23,7 +23,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="-- °C"
+                android:text="@string/temperature_placeholder"
                 android:textSize="18sp"
                 android:textColor="@color/color_on_surface" />
 
@@ -32,7 +32,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="-- mm"
+                android:text="@string/precipitation_placeholder"
                 android:textSize="18sp"
                 android:textColor="@color/color_on_surface" />
 
@@ -59,13 +59,26 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:orientation="vertical"
-                android:gravity="center">
+                android:gravity="center"
+                android:elevation="4dp">
+
+                <ImageView
+                    android:id="@+id/image_car"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/car"
+                    android:alpha="0.85"
+                    android:contentDescription="@string/illustration_car"
+                    android:layout_marginBottom="12dp"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    app:tint="@null" />
 
                 <TextView
                     android:id="@+id/text_speed_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="--"
+                    android:text="@string/speed_placeholder"
                     android:textSize="64sp"
                     android:textStyle="bold"
                     android:textColor="@color/color_primary" />
@@ -74,7 +87,7 @@
                     android:id="@+id/text_speed_unit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="km/h"
+                    android:text="@string/speed_unit"
                     android:textSize="16sp"
                     android:textColor="@color/color_on_surface" />
 
@@ -86,45 +99,53 @@
             android:id="@+id/switch_offline_weather"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Use offline weather"
+            android:text="@string/offline_weather"
             android:layout_marginBottom="16dp" />
 
-        <!-- Time of Day -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Time of Day"
+            android:text="@string/time_of_day"
             android:textStyle="bold"
             android:layout_marginBottom="8dp" />
 
-        <RadioGroup
-            android:id="@+id/group_time"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:layout_marginBottom="16dp">
 
-            <RadioButton
-                android:id="@+id/radio_day"
-                android:layout_width="0dp"
+            <RadioGroup
+                android:id="@+id/group_time"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Day"
-                android:checked="true" />
+                android:orientation="horizontal">
 
-            <RadioButton
-                android:id="@+id/radio_night"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Night" />
+                <RadioButton
+                    android:id="@+id/radio_day"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/day"
+                    android:checked="true" />
 
-        </RadioGroup>
+                <RadioButton
+                    android:id="@+id/radio_night"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/night" />
+
+            </RadioGroup>
+
+        </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Road Type"
+            android:text="@string/road_type"
             android:textStyle="bold"
             android:layout_marginBottom="8dp" />
 
@@ -139,7 +160,7 @@
             android:id="@+id/button_recalculate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Recalculate"
+            android:text="@string/recalculate"
             android:textSize="18sp"
             android:paddingTop="16dp"
             android:paddingBottom="16dp"
@@ -149,7 +170,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Calculation History"
+            android:text="@string/calculation_history"
             android:textStyle="bold"
             android:textSize="16sp"
             android:textColor="@color/color_on_surface"
@@ -173,7 +194,7 @@
             android:id="@+id/text_debug"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Press Recalculate"
+            android:text="@string/press_recalculate"
             android:textSize="14sp"
             android:textColor="@color/color_on_surface"
             android:padding="8dp"

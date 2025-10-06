@@ -8,6 +8,8 @@
     <color name="color_on_primary">#FFFFFF</color>
     <color name="color_on_surface">#0A0A0A</color>
 
+    <color name="ic_launcher_background">#FFFFFF</color>
+
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="purple_200">#FFBB86FC</color>

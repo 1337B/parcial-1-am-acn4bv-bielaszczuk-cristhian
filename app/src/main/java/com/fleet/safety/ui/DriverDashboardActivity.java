@@ -59,7 +59,7 @@ public class DriverDashboardActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 this,
                 android.R.layout.simple_spinner_item,
-                new String[]{"Asphalt", "Gravel"}
+                new String[]{getString(R.string.asphalt), getString(R.string.gravel)}
         );
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.spinnerRoad.setAdapter(adapter);
@@ -89,7 +89,7 @@ public class DriverDashboardActivity extends AppCompatActivity {
                 public void onError(Exception e) {
                     Log.e(TAG, "Weather fetch failed", e);
                     Toast.makeText(DriverDashboardActivity.this,
-                            "Weather error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            getString(R.string.weather_error, e.getMessage()), Toast.LENGTH_SHORT).show();
 
                     WeatherSnapshot fallback = new WeatherSnapshot(15.0, 0.0, WeatherType.CLEAR);
                     updateWeatherDisplay(fallback);
@@ -100,8 +100,8 @@ public class DriverDashboardActivity extends AppCompatActivity {
     }
 
     private void updateWeatherDisplay(WeatherSnapshot weather) {
-        binding.textTemp.setText(String.format(Locale.US, "Temperature: %.1f °C", weather.getTemperatureCelsius()));
-        binding.textPrecip.setText(String.format(Locale.US, "Precipitation: %.1f mm", weather.getPrecipitationMm()));
+        binding.textTemp.setText(getString(R.string.temperature_value, weather.getTemperatureCelsius()));
+        binding.textPrecip.setText(getString(R.string.precipitation_value, weather.getPrecipitationMm()));
     }
 
     private void computeSpeed(WeatherSnapshot weather) {
@@ -138,7 +138,7 @@ public class DriverDashboardActivity extends AppCompatActivity {
         int currentSpeed = 0;
         try {
             String currentText = binding.textSpeedValue.getText().toString();
-            if (!currentText.equals("--")) {
+            if (!currentText.equals(getString(R.string.speed_placeholder))) {
                 currentSpeed = Integer.parseInt(currentText);
             }
         } catch (NumberFormatException e) {
@@ -190,7 +190,7 @@ public class DriverDashboardActivity extends AppCompatActivity {
         timestampView.setTypeface(null, Typeface.BOLD);
 
         TextView speedView = new TextView(this);
-        speedView.setText(String.format(Locale.US, "Max: %d km/h", decision.getMaxSpeedKmh()));
+        speedView.setText(getString(R.string.max_speed_format, decision.getMaxSpeedKmh()));
         speedView.setTextColor(ContextCompat.getColor(this, R.color.color_primary));
         speedView.setTextSize(16);
         speedView.setTypeface(null, Typeface.BOLD);

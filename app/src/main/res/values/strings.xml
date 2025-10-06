@@ -5,11 +5,11 @@
 
     <string name="recalculate">Recalculate</string>
 
-    <string name="road_type">Road type</string>
+    <string name="road_type">Road Type</string>
     <string name="asphalt">Asphalt</string>
     <string name="gravel">Gravel</string>
 
-    <string name="time_of_day">Time of day</string>
+    <string name="time_of_day">Time of Day</string>
     <string name="day">Day</string>
     <string name="night">Night</string>
 
@@ -17,4 +17,22 @@
     <string name="offline_weather">Use offline weather</string>
 
     <string name="max_speed_label">Max speed</string>
+
+    <string name="temperature_placeholder">-- °C</string>
+    <string name="precipitation_placeholder">-- mm</string>
+    <string name="temperature_value">Temperature: %.1f °C</string>
+    <string name="precipitation_value">Precipitation: %.1f mm</string>
+
+    <string name="speed_placeholder">--</string>
+    <string name="speed_unit">km/h</string>
+    <string name="max_speed_format">Max: %d km/h</string>
+
+    <string name="calculation_history">Calculation History</string>
+
+    <string name="press_recalculate">Press Recalculate</string>
+
+    <string name="weather_error">Weather error: %s</string>
+
+    <string name="illustration_velocity">Velocity illustration</string>
+    <string name="illustration_car">Car illustration</string>
 </resources>
