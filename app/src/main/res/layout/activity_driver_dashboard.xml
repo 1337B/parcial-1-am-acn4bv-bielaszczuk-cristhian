@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_background"
@@ -13,7 +12,6 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- Weather Display -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -40,7 +38,6 @@
 
         </LinearLayout>
 
-        <!-- Speed Gauge -->
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="280dp"
@@ -85,7 +82,6 @@
 
         </FrameLayout>
 
-        <!-- Offline Weather Switch -->
         <com.google.android.material.switchmaterial.SwitchMaterial
             android:id="@+id/switch_offline_weather"
             android:layout_width="match_parent"
@@ -125,7 +121,6 @@
 
         </RadioGroup>
 
-        <!-- Road Type -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -140,7 +135,6 @@
             android:layout_marginBottom="16dp"
             android:minHeight="48dp" />
 
-        <!-- Recalculate Button -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_recalculate"
             android:layout_width="match_parent"
@@ -152,7 +146,29 @@
             app:cornerRadius="28dp"
             android:layout_marginBottom="16dp" />
 
-        <!-- Debug Text -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Calculation History"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="@color/color_on_surface"
+            android:layout_marginBottom="8dp" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxHeight="300dp"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:id="@+id/history_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+
+        </ScrollView>
+
         <TextView
             android:id="@+id/text_debug"
             android:layout_width="match_parent"
