@@ -4,10 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 public class SpeedRuleEngine {
 
-    private static final int BASE_SPEED = 80;
+    private static final int DEFAULT_BASE_SPEED = 80;
     private static final int GLOBAL_MIN_SPEED = 20;
     private static final int GLOBAL_MAX_SPEED = 110;
-
     private static final int GRAVEL_PENALTY = 20;
     private static final int NIGHT_PENALTY = 10;
     private static final int RAIN_PENALTY = 10;
@@ -31,8 +30,10 @@ public class SpeedRuleEngine {
         }
 
         List<String> reasonParts = new ArrayList<>();
-        int currentSpeed = BASE_SPEED;
-        reasonParts.add("base " + BASE_SPEED);
+
+        int baseSpeed = settings.getBaseSpeed() != null ? settings.getBaseSpeed() : DEFAULT_BASE_SPEED;
+        int currentSpeed = baseSpeed;
+        reasonParts.add("base " + baseSpeed);
 
         if (settings.getRoadType() == RoadType.GRAVEL) {
             currentSpeed -= GRAVEL_PENALTY;

@@ -1,165 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/app/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    android:background="@color/color_background">
+    android:background="@color/color_background"
+    android:fillViewport="true">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/space_m"
-        tools:context=".ui.AdminSettingsActivity">
+        android:orientation="vertical"
+        android:padding="24dp">
 
-        <!-- Title -->
         <TextView
-            android:id="@+id/textTitleAdmin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/admin_settings_title"
-            android:textAppearance="@style/TextAppearance.Fleet.Title"
+            android:text="Admin Settings"
+            android:textSize="24sp"
+            android:textStyle="bold"
             android:textColor="@color/color_primary"
-            android:layout_marginBottom="@dimen/space_l"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            android:layout_marginBottom="24dp" />
 
-        <!-- Global Parameters Card -->
-        <LinearLayout
-            android:id="@+id/layoutGlobalParameters"
+        <!-- Min Speed -->
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/card_background"
-            android:padding="@dimen/space_m"
-            android:layout_marginTop="@dimen/space_l"
-            app:layout_constraintTop_toBottomOf="@id/textTitleAdmin"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            android:layout_marginBottom="16dp"
+            android:hint="Minimum Speed (km/h)">
 
-            <!-- Section Title -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Global parameters"
-                android:textSize="@dimen/text_h2"
-                android:textStyle="bold"
-                android:textColor="@color/color_on_surface"
-                android:layout_marginBottom="@dimen/space_m" />
-
-            <!-- Road Type Section -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/road_type"
-                android:textSize="@dimen/text_body"
-                android:textStyle="bold"
-                android:textColor="@color/color_on_surface"
-                android:layout_marginBottom="@dimen/space_s" />
-
-            <RadioGroup
-                android:id="@+id/radioRoadTypeAdmin"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_min_speed"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="@dimen/space_m">
+                android:inputType="number" />
 
-                <RadioButton
-                    android:id="@+id/radioAsphaltAdmin"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/asphalt"
-                    android:checked="true" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                <RadioButton
-                    android:id="@+id/radioGravelAdmin"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/gravel" />
-
-            </RadioGroup>
-
-            <!-- Time of Day Section -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/time_of_day"
-                android:textSize="@dimen/text_body"
-                android:textStyle="bold"
-                android:textColor="@color/color_on_surface"
-                android:layout_marginBottom="@dimen/space_s" />
-
-            <RadioGroup
-                android:id="@+id/radioTimeOfDayAdmin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="@dimen/space_m">
-
-                <RadioButton
-                    android:id="@+id/radioDayAdmin"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/day"
-                    android:checked="true" />
-
-                <RadioButton
-                    android:id="@+id/radioNightAdmin"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/night" />
-
-            </RadioGroup>
-
-            <!-- Speed Bounds Section -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Speed bounds"
-                android:textSize="@dimen/text_body"
-                android:textStyle="bold"
-                android:textColor="@color/color_on_surface"
-                android:layout_marginBottom="@dimen/space_s" />
-
-            <EditText
-                android:id="@+id/editMinSpeed"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Min speed (km/h)"
-                android:inputType="number"
-                android:padding="@dimen/space_m"
-                android:layout_marginBottom="@dimen/space_s" />
-
-            <EditText
-                android:id="@+id/editMaxSpeed"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Max speed (km/h)"
-                android:inputType="number"
-                android:padding="@dimen/space_m" />
-
-        </LinearLayout>
-
-        <!-- Save Settings Button -->
-        <Button
-            android:id="@+id/buttonSaveSettings"
+        <!-- Max Speed -->
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:text="Save settings"
-            android:textSize="18sp"
-            android:layout_marginTop="@dimen/space_xl"
-            android:layout_marginBottom="@dimen/space_m"
-            app:layout_constraintTop_toBottomOf="@id/layoutGlobalParameters"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:hint="Maximum Speed (km/h)">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_max_speed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Base Speed -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:hint="Base Speed (km/h)">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_base_speed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Save Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save"
+            android:textSize="18sp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            app:cornerRadius="28dp" />
+
+    </LinearLayout>
 
 </ScrollView>

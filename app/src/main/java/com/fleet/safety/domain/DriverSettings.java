@@ -6,11 +6,14 @@ public class DriverSettings {
     private final Integer minAllowedSpeed;
     private final Integer maxAllowedSpeed;
 
-    private DriverSettings(RoadType roadType, TimeOfDay timeOfDay, Integer minAllowedSpeed, Integer maxAllowedSpeed) {
+    private final Integer baseSpeed;
+
+    private DriverSettings(RoadType roadType, TimeOfDay timeOfDay, Integer minAllowedSpeed, Integer maxAllowedSpeed, Integer baseSpeed) {
         this.roadType = roadType;
         this.timeOfDay = timeOfDay;
         this.minAllowedSpeed = minAllowedSpeed;
         this.maxAllowedSpeed = maxAllowedSpeed;
+        this.baseSpeed = baseSpeed;
     }
 
     public RoadType getRoadType() {
@@ -29,6 +32,10 @@ public class DriverSettings {
         return maxAllowedSpeed;
     }
 
+    public Integer getBaseSpeed() {
+        return baseSpeed;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -38,6 +45,7 @@ public class DriverSettings {
         private TimeOfDay timeOfDay;
         private Integer minAllowedSpeed;
         private Integer maxAllowedSpeed;
+        private Integer baseSpeed;
 
         public Builder withRoadType(RoadType roadType) {
             this.roadType = roadType;
@@ -59,8 +67,13 @@ public class DriverSettings {
             return this;
         }
 
+        public Builder withBaseSpeed(Integer baseSpeed) {
+            this.baseSpeed = baseSpeed;
+            return this;
+        }
+
         public DriverSettings build() {
-            return new DriverSettings(roadType, timeOfDay, minAllowedSpeed, maxAllowedSpeed);
+            return new DriverSettings(roadType, timeOfDay, minAllowedSpeed, maxAllowedSpeed, baseSpeed);
         }
     }
 }

@@ -1,220 +1,168 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/app/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    android:background="@color/color_background">
+    android:background="@color/color_background"
+    android:fillViewport="true">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/space_m"
-        tools:context=".ui.DriverDashboardActivity">
+        android:orientation="vertical"
+        android:padding="16dp">
 
-        <!-- Header section -->
+        <!-- Weather Display -->
         <LinearLayout
-            android:id="@+id/layoutHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="@dimen/space_m"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
 
             <TextView
-                android:id="@+id/textSubtitle"
-                android:layout_width="wrap_content"
+                android:id="@+id/text_temp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Live max speed"
-                android:textSize="16sp"
+                android:layout_weight="1"
+                android:text="-- °C"
+                android:textSize="18sp"
+                android:textColor="@color/color_on_surface" />
+
+            <TextView
+                android:id="@+id/text_precip"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="-- mm"
+                android:textSize="18sp"
                 android:textColor="@color/color_on_surface" />
 
         </LinearLayout>
 
-        <!-- Big number display -->
-
-        <!-- Parameters card -->
-
-        <!-- Weather section -->
-
-        <TextView
-            android:id="@+id/textMaxSpeed"
-            android:layout_width="373dp"
-            android:layout_height="102dp"
-            android:text="-- km/h"
-            android:textColor="@color/color_primary"
-            android:textSize="48sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layoutHeader"
-            tools:layout_editor_absoluteX="-9dp"
-            tools:layout_editor_absoluteY="38dp" />
-
-        <LinearLayout
-            android:id="@+id/layoutParameters"
+        <!-- Speed Gauge -->
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/card_background"
-            android:orientation="vertical"
-            android:padding="@dimen/space_m"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textMaxSpeed"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="436dp">
+            android:layout_height="280dp"
+            android:layout_marginBottom="16dp">
 
-            <!-- Road Type Section -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/space_s"
-                android:text="@string/road_type"
-                android:textColor="@color/color_on_surface"
-                android:textSize="@dimen/text_body"
-                android:textStyle="bold" />
-
-            <RadioGroup
-                android:id="@+id/radioRoadType"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/space_m"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/radioAsphalt"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:checked="true"
-                    android:text="@string/asphalt" />
-
-                <RadioButton
-                    android:id="@+id/radioGravel"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/gravel" />
-
-            </RadioGroup>
-
-            <!-- Time of Day Section -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/space_s"
-                android:text="@string/time_of_day"
-                android:textColor="@color/color_on_surface"
-                android:textSize="@dimen/text_body"
-                android:textStyle="bold" />
-
-            <RadioGroup
-                android:id="@+id/radioTimeOfDay"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/radioDay"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:checked="true"
-                    android:text="@string/day" />
-
-                <RadioButton
-                    android:id="@+id/radioNight"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/night" />
-
-            </RadioGroup>
-
-        </LinearLayout>
-
-        <!-- Recalculate button -->
-        <LinearLayout
-            android:id="@+id/layoutWeather"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/card_background"
-            android:orientation="vertical"
-            android:padding="@dimen/space_m"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layoutParameters"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="281dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/space_s"
-                android:text="@string/weather"
-                android:textColor="@color/color_on_surface"
-                android:textSize="@dimen/text_body"
-                android:textStyle="bold" />
+            <ProgressBar
+                android:id="@+id/progress_speed"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="280dp"
+                android:layout_height="280dp"
+                android:layout_gravity="center"
+                android:indeterminate="false"
+                android:max="120"
+                android:progress="0"
+                android:progressDrawable="@drawable/green_progress_bar" />
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/space_s"
-                android:orientation="horizontal">
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:gravity="center">
 
                 <TextView
-                    android:id="@+id/textTemperature"
-                    android:layout_width="0dp"
+                    android:id="@+id/text_speed_value"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="-- °C"
-                    android:textSize="@dimen/text_body" />
+                    android:text="--"
+                    android:textSize="64sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/color_primary" />
 
                 <TextView
-                    android:id="@+id/textPrecipitation"
-                    android:layout_width="0dp"
+                    android:id="@+id/text_speed_unit"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="-- mm"
-                    android:textSize="@dimen/text_body" />
+                    android:text="km/h"
+                    android:textSize="16sp"
+                    android:textColor="@color/color_on_surface" />
 
             </LinearLayout>
 
-            <Switch
-                android:id="@+id/switchOfflineWeather"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="false"
-                android:text="@string/offline_weather" />
+        </FrameLayout>
 
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/buttonRecalculate"
+        <!-- Offline Weather Switch -->
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switch_offline_weather"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:text="@string/recalculate"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layoutWeather"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="208dp" />
+            android:layout_height="wrap_content"
+            android:text="Use offline weather"
+            android:layout_marginBottom="16dp" />
 
+        <!-- Time of Day -->
         <TextView
-            android:id="@+id/textTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/driver_dashboard_title"
-            android:textAppearance="@style/TextAppearance.Fleet.Title"
-            android:textColor="@color/color_primary"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="122dp" />
+            android:text="Time of Day"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <RadioGroup
+            android:id="@+id/group_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <RadioButton
+                android:id="@+id/radio_day"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Day"
+                android:checked="true" />
+
+            <RadioButton
+                android:id="@+id/radio_night"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Night" />
+
+        </RadioGroup>
+
+        <!-- Road Type -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Road Type"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <Spinner
+            android:id="@+id/spinner_road"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:minHeight="48dp" />
+
+        <!-- Recalculate Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_recalculate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Recalculate"
+            android:textSize="18sp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            app:cornerRadius="28dp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Debug Text -->
+        <TextView
+            android:id="@+id/text_debug"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Press Recalculate"
+            android:textSize="14sp"
+            android:textColor="@color/color_on_surface"
+            android:padding="8dp"
+            android:background="@color/color_surface" />
+
+    </LinearLayout>
 
 </ScrollView>

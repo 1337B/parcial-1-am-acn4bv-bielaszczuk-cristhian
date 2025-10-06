@@ -1,103 +1,63 @@
 package com.fleet.safety.ui;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.fleet.safety.R;
 import com.fleet.safety.databinding.ActivityAdminSettingsBinding;
 
 public class AdminSettingsActivity extends AppCompatActivity {
 
     private ActivityAdminSettingsBinding binding;
-
-    private TextView textTitleAdmin;
-    private RadioGroup radioRoadTypeAdmin;
-    private RadioButton radioAsphaltAdmin;
-    private RadioButton radioGravelAdmin;
-    private RadioGroup radioTimeOfDayAdmin;
-    private RadioButton radioDayAdmin;
-    private RadioButton radioNightAdmin;
-    private EditText editMinSpeed;
-    private EditText editMaxSpeed;
-    private Button buttonSaveSettings;
+    private SettingsStore settingsStore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         binding = ActivityAdminSettingsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        setTitle(R.string.admin_settings_title);
+        settingsStore = new SettingsStore(this);
 
-        initializeViews();
-        setupListeners();
+        loadSettings();
+
+        binding.buttonSave.setOnClickListener(v -> saveSettings());
     }
 
-    private void initializeViews() {
-        textTitleAdmin = binding.textTitleAdmin;
-
-        radioRoadTypeAdmin = binding.radioRoadTypeAdmin;
-        radioAsphaltAdmin = binding.radioAsphaltAdmin;
-        radioGravelAdmin = binding.radioGravelAdmin;
-
-        radioTimeOfDayAdmin = binding.radioTimeOfDayAdmin;
-        radioDayAdmin = binding.radioDayAdmin;
-        radioNightAdmin = binding.radioNightAdmin;
-
-        editMinSpeed = binding.editMinSpeed;
-        editMaxSpeed = binding.editMaxSpeed;
-
-        buttonSaveSettings = binding.buttonSaveSettings;
+    private void loadSettings() {
+        binding.inputMinSpeed.setText(String.valueOf(settingsStore.getMin()));
+        binding.inputMaxSpeed.setText(String.valueOf(settingsStore.getMax()));
+        binding.inputBaseSpeed.setText(String.valueOf(settingsStore.getBase()));
     }
 
-    private void setupListeners() {
-        buttonSaveSettings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveSettingsAndNavigateToDriver();
+    private void saveSettings() {
+        try {
+            String minStr = binding.inputMinSpeed.getText().toString().trim();
+            String maxStr = binding.inputMaxSpeed.getText().toString().trim();
+            String baseStr = binding.inputBaseSpeed.getText().toString().trim();
+
+            if (minStr.isEmpty() || maxStr.isEmpty() || baseStr.isEmpty()) {
+                Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show();
+                return;
             }
-        });
-    }
 
-    private void saveSettingsAndNavigateToDriver() {
-        String roadType = radioAsphaltAdmin.isChecked() ? "ASPHALT" : "GRAVEL";
+            int min = Integer.parseInt(minStr);
+            int max = Integer.parseInt(maxStr);
+            int base = Integer.parseInt(baseStr);
 
-        String timeOfDay = radioDayAdmin.isChecked() ? "DAY" : "NIGHT";
-
-        Intent intent = new Intent(this, DriverDashboardActivity.class);
-
-        intent.putExtra("roadType", roadType);
-        intent.putExtra("timeOfDay", timeOfDay);
-
-        String minSpeedText = editMinSpeed.getText().toString().trim();
-        if (!TextUtils.isEmpty(minSpeedText)) {
-            try {
-                int minSpeed = Integer.parseInt(minSpeedText);
-                intent.putExtra("minAllowedSpeed", minSpeed);
-            } catch (NumberFormatException e) {
+            if (min > max) {
+                Toast.makeText(this, "Min speed must be <= max speed", Toast.LENGTH_SHORT).show();
+                return;
             }
+
+            settingsStore.save(min, max, base);
+            Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show();
+            finish();
+
+        } catch (NumberFormatException e) {
+            Toast.makeText(this, "Invalid number format", Toast.LENGTH_SHORT).show();
         }
-
-        String maxSpeedText = editMaxSpeed.getText().toString().trim();
-        if (!TextUtils.isEmpty(maxSpeedText)) {
-            try {
-                int maxSpeed = Integer.parseInt(maxSpeedText);
-                intent.putExtra("maxAllowedSpeed", maxSpeed);
-            } catch (NumberFormatException e) {
-            }
-        }
-
-        startActivity(intent);
     }
 
     @Override

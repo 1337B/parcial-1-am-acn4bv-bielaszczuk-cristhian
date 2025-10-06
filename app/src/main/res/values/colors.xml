@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="color_primary">#0A5FFF</color>
+    <color name="color_primary">#144264</color>
     <color name="color_primary_variant">#0847BF</color>
     <color name="color_secondary">#00B37E</color>
-    <color name="color_background">#F6F8FA</color>
+    <color name="color_background">#EFDFDF</color>
     <color name="color_surface">#FFFFFF</color>
     <color name="color_on_primary">#FFFFFF</color>
     <color name="color_on_surface">#0A0A0A</color>

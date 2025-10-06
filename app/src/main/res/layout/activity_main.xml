@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/app/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/space_m"
     android:background="@color/color_background"
+    android:padding="32dp"
     tools:context=".ui.MainActivity">
 
     <TextView
@@ -13,40 +13,43 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Fleet Safety"
-        android:textAppearance="@style/TextAppearance.Fleet.Title"
         android:textColor="@color/color_primary"
-        android:layout_marginBottom="@dimen/space_xl"
-        app:layout_constraintBottom_toTopOf="@id/buttonGoDriver"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="48dp"
+        app:layout_constraintBottom_toTopOf="@id/button_go_driver"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed" />
 
-    <Button
-        android:id="@+id/buttonGoDriver"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_go_driver"
         android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:text="@string/driver_dashboard_title"
+        android:layout_height="wrap_content"
+        android:text="Driver Dashboard"
         android:textSize="18sp"
-        android:layout_marginBottom="@dimen/space_m"
-        android:layout_marginStart="@dimen/space_l"
-        android:layout_marginEnd="@dimen/space_l"
-        app:layout_constraintBottom_toTopOf="@id/buttonGoAdmin"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:layout_marginBottom="16dp"
+        app:cornerRadius="28dp"
+        app:layout_constraintBottom_toTopOf="@id/button_go_admin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textGreeting" />
 
-    <Button
-        android:id="@+id/buttonGoAdmin"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_go_admin"
         android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:text="@string/admin_settings_title"
+        android:layout_height="wrap_content"
+        android:text="Admin Settings"
         android:textSize="18sp"
-        android:layout_marginStart="@dimen/space_l"
-        android:layout_marginEnd="@dimen/space_l"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        app:cornerRadius="28dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/buttonGoDriver" />
+        app:layout_constraintTop_toBottomOf="@id/button_go_driver" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
